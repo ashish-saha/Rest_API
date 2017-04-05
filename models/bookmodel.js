@@ -6,7 +6,7 @@ var mongoose = require ('mongoose'),
 
 // we will hate to layout inn json what a book looking like
 var bookModel = new schema ({
-	titile: {type: String},
+	title: {type: String},
 	author: {type: String},
 	genre: {type: String},
 	read: {type: Boolean, default: false}
