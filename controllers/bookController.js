@@ -21,8 +21,16 @@ var bookController = function (Book) {
 		Book.find (query, function (err, books) {
 			if (err)
 				res.status(500).send(err);
-			else
-				res.json(books);
+			else {
+				var returnBooks = [];
+				books.forEach(function (element, index, array) {
+					
+					var newBook = element.toJSON();
+					newBook.link = 'http://' + req.headers.host + '/api/books/' + newBook._id;
+					returnBooks.push (newBook);
+				});
+				res.json(returnBooks);
+			}
 		});
 	};
 
