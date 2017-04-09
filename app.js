@@ -10,7 +10,13 @@ since bookAPI doest exists it will actually create it for us
 
 // mongoose used something called model
 // it is an instance of our book schema 
-var db = mongoose.connect('mongodb://localhost/bookAPI');			
+var db;
+
+if (process.env.ENV == 'Test')
+	db = mongoose.connect('mongodb://localhost/bookAPI_test');
+else
+	db = mongoose.connect('mongodb://localhost/bookAPI');
+
 
 var Book = require ('./models/bookModel');
 
@@ -33,7 +39,7 @@ app.listen (port, function () {
 	console.log ("Gulp is Runnung on port: " + port);
 });
 
-
+module.exports = app;
 
 
 
